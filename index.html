@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Canvas Workshop</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<fieldset>
+		<legend>Movement Type</legend>
+		<input id="cbInf" type="radio" name="move" onclick="typeChange()" checked="true" value="infantry">
+		<label>Infantry</label>
+		<input id="cbArmor" type="radio" name="move" onclick="typeChange()" value="armored">
+		<label>Armored</label>
+		<input id="cbCav" type="radio" name="move" onclick="typeChange()" value="cavalry">
+		<label>Cavalry</label>
+		<input id="cbFly" type="radio" name="move" onclick="typeChange()" value="flier">
+		<label>Flier</label>
+	</fieldset>
+	<fieldset>
+		<legend>Choose character type</legend>
+		<div>
+			<input id="cbGen2" type="checkbox" onclick="typeChange()" value="gen2">
+			<label>Generation 2</label>
+		</div>
+		<div>
+			<input id="cbTrain" type="checkbox" onclick="typeChange()" value="trainee">
+			<label>Trainee</label>
+		</div>
+		<div>
+			<input id="cbVet" type="checkbox" onclick="typeChange()" value="veteran">
+			<label>Veteran</label>
+		</div>
+		<div>
+			<input id="cbDance" type="checkbox" onclick="typeChange()" value="dancer">
+			<label>Dancer/Singer</label>
+		</div>
+		<div>
+			<input id="cbRanged" type="checkbox" onclick="typeChange()" value="ranged">
+			<label>Ranged</label>
+		</div>
+		<div>
+			<input id="cbCyl" type="checkbox" onclick="typeChange()" value="cyl">
+			<label>CYL Winner</label>
+		</div>
+	</fieldset>
+	<p>Total Base</p>
+	<input type="number" id="totalBase" value="47" disabled="true">
+	<p>Total Growth</p>
+	<input type="number" id="totalGrowth" value="255" disabled="true">
+
+	<script src="script.js"></script>
+</body>
+</html>

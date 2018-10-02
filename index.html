@@ -2,53 +2,141 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>Canvas Workshop</title>
+    <title>FE Heroes Stats Calculator</title>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
 <body>
-	<fieldset>
-		<legend>Movement Type</legend>
-		<input id="cbInf" type="radio" name="move" onclick="typeChange()" checked="true" value="infantry">
-		<label>Infantry</label>
-		<input id="cbArmor" type="radio" name="move" onclick="typeChange()" value="armored">
-		<label>Armored</label>
-		<input id="cbCav" type="radio" name="move" onclick="typeChange()" value="cavalry">
-		<label>Cavalry</label>
-		<input id="cbFly" type="radio" name="move" onclick="typeChange()" value="flier">
-		<label>Flier</label>
-	</fieldset>
-	<fieldset>
-		<legend>Choose character type</legend>
-		<div>
-			<input id="cbGen2" type="checkbox" onclick="typeChange()" value="gen2">
-			<label>Generation 2</label>
+	<div class="container text-center">
+		<div class="row">
+			<div class="col-sm">
+				<h1><span class="badge badge-primary">Movement Type</span></h1>
+				<div id="moveTypes" class="btn-group btn-group-vertical btn-group-toggle" data-toggle="buttons">
+					<label class="btn btn-secondary active">
+						<input type="radio" name="move" id="cbInf" onclick="typeChange()" checked> Infantry
+					</label>
+					<label class="btn btn-secondary">
+						<input type="radio" name="move" id="cbArmor" onclick="typeChange()"> Armored
+					</label>
+					<label class="btn btn-secondary">
+						<input type="radio" name="move" id="cbCav" onclick="typeChange()"> Cavalry
+					</label>
+					<label class="btn btn-secondary">
+						<input type="radio" name="move" id="cbFly" onclick="typeChange()"> Flier
+					</label>
+				</div>
+			</div>
+			<div class="col-sm text-left">
+				<h1><span class="badge badge-primary">Choose character type</span></h1>
+				<div class="custom-control custom-checkbox">
+					<input type="checkbox" class="custom-control-input" id="cbGen2" onclick="typeChange()">
+					<label class="custom-control-label" for="cbGen2">Generation 2</label>
+				</div>
+				<div class="custom-control custom-checkbox">
+					<input type="checkbox" class="custom-control-input" id="cbTrain" onclick="typeChange()">
+					<label class="custom-control-label" for="cbTrain">Trainee</label>
+				</div>
+				<div class="custom-control custom-checkbox">
+					<input type="checkbox" class="custom-control-input" id="cbVet" onclick="typeChange()">
+					<label class="custom-control-label" for="cbVet">Veteran</label>
+				</div>
+				<div class="custom-control custom-checkbox">
+					<input type="checkbox" class="custom-control-input" id="cbDance" onclick="typeChange()">
+					<label class="custom-control-label" for="cbDance">Dancer/Singer</label>
+				</div>
+				<div class="custom-control custom-checkbox">
+					<input type="checkbox" class="custom-control-input" id="cbRanged" onclick="typeChange()">
+					<label class="custom-control-label" for="cbRanged">Ranged</label>
+				</div>
+				<div class="custom-control custom-checkbox">
+					<input type="checkbox" class="custom-control-input" id="cbCyl" onclick="typeChange()">
+					<label class="custom-control-label" for="cbCyl">CYL Winner</label>
+				</div>
+			</div>
 		</div>
-		<div>
-			<input id="cbTrain" type="checkbox" onclick="typeChange()" value="trainee">
-			<label>Trainee</label>
+		</br>
+		<div class="border shadow p-3 mb-5 bg-white rounded">
+			<fieldset>
+				<legend>Base</legend>
+				<label>HP</label>
+				<input type="number" min="0" max="25" value="0" onchange="valueChange()" id="valHP">
+				<label>ATK</label>
+				<input type="number" min="0" max="25" value="0" onchange="valueChange()" id="valATK">
+				<label>SPD</label>
+				<input type="number" min="0" max="25" value="0" onchange="valueChange()" id="valSPD">
+				<label>DEF</label>
+				<input type="number" min="0" max="25" value="0" onchange="valueChange()" id="valDEF">
+				<label>RES</label>
+				<input type="number" min="0" max="25" value="0" onchange="valueChange()" id="valRES">
+			</fieldset>
+			<fieldset>
+				<legend>Growth</legend>
+				<label>HP</label>
+				<input type="number" min="0" max="100" value="0" step="5" onchange="valueChange()" id="grHP">
+				<label>ATK</label>
+				<input type="number" min="0" max="100" value="0" step="5" onchange="valueChange()" id="grATK">
+				<label>SPD</label>
+				<input type="number" min="0" max="100" value="0" step="5" onchange="valueChange()" id="grSPD">
+				<label>DEF</label>
+				<input type="number" min="0" max="100" value="0" step="5" onchange="valueChange()" id="grDEF">
+				<label>RES</label>
+				<input type="number" min="0" max="100" value="0" step="5" onchange="valueChange()" id="grRES">
+			</fieldset>
+			</br>
+			<div class="row">
+				<div class="col-sm">
+					<p>Expected Base</p>
+					<input class="form-control text-center" type="number" id="expBase" value="47" disabled="true">
+					<p>Expected Growth</p>
+					<input class="form-control text-center" type="number" id="expGrowth" value="255" disabled="true">
+				</div>
+				<div class="col-sm"></div>
+				<div class="col-sm">
+					<p>Total Base</p>
+					<input type="number" class="form-control text-center" id="totalBase" value="0" disabled="true">
+					<p>Total Growth</p>
+					<input type="number" class="form-control text-center" id="totalGrowth" value="0" disabled="true">
+				</div>
+			</div>
 		</div>
-		<div>
-			<input id="cbVet" type="checkbox" onclick="typeChange()" value="veteran">
-			<label>Veteran</label>
-		</div>
-		<div>
-			<input id="cbDance" type="checkbox" onclick="typeChange()" value="dancer">
-			<label>Dancer/Singer</label>
-		</div>
-		<div>
-			<input id="cbRanged" type="checkbox" onclick="typeChange()" value="ranged">
-			<label>Ranged</label>
-		</div>
-		<div>
-			<input id="cbCyl" type="checkbox" onclick="typeChange()" value="cyl">
-			<label>CYL Winner</label>
-		</div>
-	</fieldset>
-	<p>Total Base</p>
-	<input type="number" id="totalBase" value="47" disabled="true">
-	<p>Total Growth</p>
-	<input type="number" id="totalGrowth" value="255" disabled="true">
 
+		<fieldset>
+			<legend>Final Stats</legend>
+			<table class="table table-bordered table-sm">
+				<tr class="table-active">
+					<th scope="col">HP</th>
+					<th scope="col">ATK</th>
+					<th scope="col">SPD</th>
+					<th scope="col">DEF</th>
+					<th scope="col">RES</th>
+				</tr>
+				<tr class="table-danger">
+					<td id = "baneHP">0</td>
+					<td id = "baneATK">0</td>
+					<td id = "baneSPD">0</td>
+					<td id = "baneDEF">0</td>
+					<td id = "baneRES">0</td>
+				</tr>
+				<tr class="table-warning">
+					<td id = "totalHP">0</td>
+					<td id = "totalATK">0</td>
+					<td id = "totalSPD">0</td>
+					<td id = "totalDEF">0</td>
+					<td id = "totalRES">0</td>
+				</tr>
+				<tr class="table-success">
+					<td id = "boonHP">0</td>
+					<td id = "boonATK">0</td>
+					<td id = "boonSPD">0</td>
+					<td id = "boonDEF">0</td>
+					<td id = "boonRES">0</td>
+				</tr>
+			</table>
+		</fieldset>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 	<script src="script.js"></script>
 </body>
 </html>
